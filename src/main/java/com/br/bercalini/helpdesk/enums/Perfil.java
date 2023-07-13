@@ -1,4 +1,4 @@
-package com.br.bercalini.helpdesk.model.enums;
+package com.br.bercalini.helpdesk.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

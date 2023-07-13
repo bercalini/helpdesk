@@ -1,12 +1,12 @@
-package com.br.bercalini.helpdesk.model.enums;
+package com.br.bercalini.helpdesk.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum Prioridade {
-    BAIXA(0, "BAIXA"), MEDIA(1, "MEDIA"), ALTA(2, "ALTA");
+public enum Status {
+    ABERTO(0, "ABERTO"), ANDAMENTO(1, "ANDAMENTO"), ENCERRADO(2, "ENCERRADO");
 
     private Integer codigo;
     private String descricao;
