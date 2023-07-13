@@ -52,11 +52,11 @@ public class DBService {
         tecnico4.addPerfil(Perfil.TECNICO);
 
         Tecnico tecnico5 = new Tecnico();
-        tecnico2.setNome("Linus Torvalds");
-        tecnico2.setCpf("778.556.170-27");
-        tecnico2.setEmail("linus@mail.com");
-        tecnico2.setSenha("123");
-        tecnico2.addPerfil(Perfil.TECNICO);
+        tecnico5.setNome("Linus Torvalds");
+        tecnico5.setCpf("778.556.170-27");
+        tecnico5.setEmail("linus@mail.com");
+        tecnico5.setSenha("123");
+        tecnico5.addPerfil(Perfil.TECNICO);
 
         Cliente cliente = new Cliente();
         cliente.setNome("Linus Torvalds");

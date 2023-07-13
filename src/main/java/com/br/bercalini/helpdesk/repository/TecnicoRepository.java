@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface TecnicoRepository extends JpaRepository<Tecnico, Long> {
 
-    @Query("FROM Tecnico AS t JOIN FETCH t.chamados AS c WHERE t.id = ?1")
+ //   @Query("FROM Tecnico AS t JOIN FETCH t.chamados AS c WHERE t.id = ?1")
     Optional<Tecnico> findById(Long id);
 }
