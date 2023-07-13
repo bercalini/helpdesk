@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ public abstract class Pessoa  {
     @CollectionTable(name = "PERFIS")
     protected Set<Integer> perfis = new HashSet<>();
     @JsonFormat(pattern = "dd/MM/yyyy")
+    @CreationTimestamp
     protected LocalDate data = LocalDate.now();
 
     public void addPerfil(Perfil perfil) {

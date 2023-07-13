@@ -4,8 +4,10 @@ import com.br.bercalini.helpdesk.enums.Prioridade;
 import com.br.bercalini.helpdesk.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,15 +16,19 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Chamado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JsonFormat(pattern = "dd/MM/yyyy")
+    @CreationTimestamp
     private LocalDate dataAbertura = LocalDate.now();
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento;
+    @Enumerated(EnumType.STRING)
     private Prioridade prioridade;
+    @Enumerated(EnumType.STRING)
     private Status status;
     private String titulo;
     private String observacoes;
