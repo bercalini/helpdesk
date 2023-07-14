@@ -73,18 +73,18 @@ public class DBService {
         cliente1.addPerfil(Perfil.CLIENTE);
 
         Cliente cliente2 = new Cliente();
-        cliente1.setNome("Charles Darwin");
-        cliente1.setCpf("792.043.830-62");
-        cliente1.setEmail("darwin@mail.com");
-        cliente1.setSenha("123");
-        cliente1.addPerfil(Perfil.CLIENTE);
+        cliente2.setNome("Charles Darwin");
+        cliente2.setCpf("792.043.830-62");
+        cliente2.setEmail("darwin@mail.com");
+        cliente2.setSenha("123");
+        cliente.addPerfil(Perfil.CLIENTE);
 
         Cliente cliente3 = new Cliente();
-        cliente1.setNome("Max Planck");
-        cliente1.setCpf("081.399.300-83");
-        cliente1.setEmail("plack@mail.com");
-        cliente1.setSenha("123");
-        cliente1.addPerfil(Perfil.CLIENTE);
+        cliente3.setNome("Max Planck");
+        cliente3.setCpf("081.399.300-83");
+        cliente3.setEmail("plack@mail.com");
+        cliente3.setSenha("123");
+        cliente3.addPerfil(Perfil.CLIENTE);
 
         Chamado chamado = Chamado.builder().observacoes("Primeiro Chamado").prioridade(Prioridade.MEDIA)
                 .status(Status.ANDAMENTO).titulo("Chamado 1").cliente(cliente).tecnico(tecnico).build();

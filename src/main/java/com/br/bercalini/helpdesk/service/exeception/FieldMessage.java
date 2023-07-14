@@ -8,11 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class StantardError {
-    protected Long timestamp;
-    protected Integer status;
-    protected String error;
-    protected String message;
-    protected String path;
+public class FieldMessage {
+
+    private String fieldName;
+    private String message;
+
 }

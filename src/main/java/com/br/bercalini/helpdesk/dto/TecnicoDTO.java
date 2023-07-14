@@ -5,6 +5,7 @@ import com.br.bercalini.helpdesk.model.Tecnico;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,9 +15,13 @@ import java.util.stream.Collectors;
 @Data
 public class TecnicoDTO {
     private Long id;
+    @NotNull(message = "O campo nome é obrigatório")
     private String nome;
-    private   String cpf;
+    @NotNull(message = "O campo cpf é obrigatório")
+    private String cpf;
+    @NotNull(message = "O campo email é obrigatório")
     private String email;
+    @NotNull(message = "O campo senha é obrigatório")
     private String senha;
     protected Set<Integer> perfis = new HashSet<>();
     @JsonFormat(pattern = "dd/MM/yyyy")
