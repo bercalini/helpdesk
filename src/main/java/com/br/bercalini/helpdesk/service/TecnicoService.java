@@ -8,7 +8,9 @@ import com.br.bercalini.helpdesk.repository.PessoaRepository;
 import com.br.bercalini.helpdesk.repository.TecnicoRepository;
 import com.br.bercalini.helpdesk.service.exeception.JdbcSQLIntegrityConstraintViolationException;
 import com.br.bercalini.helpdesk.service.exeception.ObjetoNaoEncontrado;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +24,8 @@ public class TecnicoService {
     private TecnicoRepository tecnicoRepository;
     @Autowired
     private PessoaRepository pessoaRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     public TecnicoDTO findById(Long id) {
@@ -38,8 +42,28 @@ public class TecnicoService {
         validaSeExisteCPFCadastrado(tecnicoDTO);
         Tecnico tecnico = new Tecnico(tecnicoDTO);
         tecnico.addPerfil(Perfil.CLIENTE);
+        tecnico.setSenha(bCryptPasswordEncoder.encode(tecnicoDTO.getSenha()));
         return tecnicoRepository.save(tecnico);
     }
+
+    @Transactional
+    public Tecnico update(Long id, TecnicoDTO tecnicoDTO) {
+        Tecnico tecnico = tecnicoRepository.findById(id).orElseThrow(() -> new ObjetoNaoEncontrado("Objeto não encontrado! ID : " + id));
+       // validaSeExisteCPFCadastrado(tecnicoDTO);
+        BeanUtils.copyProperties(tecnicoDTO, tecnico, "id", "chamados", "data");
+        return tecnico;
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Tecnico tecnico = tecnicoRepository.findById(id).orElseThrow(() -> new ObjetoNaoEncontrado("Objeto não encontrado! ID : " + id));
+        if(tecnico.getChamados().size() > 0) {
+            throw new JdbcSQLIntegrityConstraintViolationException("Tecnico possui ordem de serviço no sistema!");
+        }else {
+            tecnicoRepository.delete(tecnico);
+        }
+    }
+
     private void validaSeExisteCPFCadastrado(TecnicoDTO tecnicoDTO) {
         Optional<Pessoa> pessoa = pessoaRepository.findByCpf(tecnicoDTO.getCpf());
         if(pessoa.isPresent() && pessoa.get().getCpf() != tecnicoDTO.getCpf()) {
@@ -50,4 +74,6 @@ public class TecnicoService {
             throw new JdbcSQLIntegrityConstraintViolationException("Email já cadastrado no sistema");
         }
     }
+
+
 }

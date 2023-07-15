@@ -9,3 +9,7 @@ logging:
     root: INFO
     org.springframework.web: DEBUG
     org.hibernate: INFO
+
+jwt:
+  secret: StringUsadaParaGerarToken
+  expiration: 640800000

@@ -39,4 +39,6 @@ public class Chamado {
     @ManyToOne
     @JoinColumn(name = "tecnico_id")
     private Tecnico tecnico;
+
+
 }

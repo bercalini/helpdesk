@@ -9,6 +9,7 @@ import com.br.bercalini.helpdesk.model.Tecnico;
 import com.br.bercalini.helpdesk.repository.ChamadoRepository;
 import com.br.bercalini.helpdesk.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -20,13 +21,15 @@ public class DBService {
     private PessoaRepository pessoaRepository;
     @Autowired
     private ChamadoRepository chamadoRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void instanciaDB() {
         Tecnico tecnico = new Tecnico();
         tecnico.setNome("Valdir Cezar");
         tecnico.setCpf("272.579.230-43");
         tecnico.setEmail("valdir@mail.com");
-        tecnico.setSenha("123");
+        tecnico.setSenha(bCryptPasswordEncoder.encode("123"));
         tecnico.addPerfil(Perfil.ADMIN);
         tecnico.addPerfil(Perfil.TECNICO);
 
@@ -34,56 +37,56 @@ public class DBService {
         tecnico2.setNome("Richard Stallman");
         tecnico2.setCpf("903.347.070-65");
         tecnico2.setEmail("stallman@mail.com");
-        tecnico2.setSenha("123");
+        tecnico2.setSenha(bCryptPasswordEncoder.encode("Alisson"));
         tecnico2.addPerfil(Perfil.TECNICO);
 
         Tecnico tecnico3 = new Tecnico();
         tecnico3.setNome("Claude Elwwod Shanoon");
         tecnico3.setCpf("271.068.470-54");
         tecnico3.setEmail("shanoon@mail.com");
-        tecnico3.setSenha("123");
+        tecnico3.setSenha(bCryptPasswordEncoder.encode("123"));
         tecnico3.addPerfil(Perfil.TECNICO);
 
         Tecnico tecnico4 = new Tecnico();
         tecnico4.setNome("Tim Berners-Lee");
         tecnico4.setCpf("162.720.120-39");
         tecnico4.setEmail("lee@mail.com");
-        tecnico4.setSenha("123");
+        tecnico4.setSenha(bCryptPasswordEncoder.encode("123"));
         tecnico4.addPerfil(Perfil.TECNICO);
 
         Tecnico tecnico5 = new Tecnico();
         tecnico5.setNome("Linus Torvalds");
         tecnico5.setCpf("778.556.170-27");
         tecnico5.setEmail("linus@mail.com");
-        tecnico5.setSenha("123");
+        tecnico5.setSenha(bCryptPasswordEncoder.encode("123"));
         tecnico5.addPerfil(Perfil.TECNICO);
 
         Cliente cliente = new Cliente();
         cliente.setNome("Linus Torvalds");
         cliente.setCpf("584.106.520-30");
         cliente.setEmail("torvalds@mail.com");
-        cliente.setSenha("123");
+        cliente.setSenha(bCryptPasswordEncoder.encode("123"));
         cliente.addPerfil(Perfil.CLIENTE);
 
         Cliente cliente1 = new Cliente();
         cliente1.setNome("Marie Curie");
         cliente1.setCpf("332.429.140-06");
         cliente1.setEmail("curie@mail.com");
-        cliente1.setSenha("123");
+        cliente1.setSenha(bCryptPasswordEncoder.encode("123"));
         cliente1.addPerfil(Perfil.CLIENTE);
 
         Cliente cliente2 = new Cliente();
         cliente2.setNome("Charles Darwin");
         cliente2.setCpf("792.043.830-62");
         cliente2.setEmail("darwin@mail.com");
-        cliente2.setSenha("123");
+        cliente2.setSenha(bCryptPasswordEncoder.encode("123"));
         cliente.addPerfil(Perfil.CLIENTE);
 
         Cliente cliente3 = new Cliente();
         cliente3.setNome("Max Planck");
         cliente3.setCpf("081.399.300-83");
         cliente3.setEmail("plack@mail.com");
-        cliente3.setSenha("123");
+        cliente3.setSenha(bCryptPasswordEncoder.encode("123"));
         cliente3.addPerfil(Perfil.CLIENTE);
 
         Chamado chamado = Chamado.builder().observacoes("Primeiro Chamado").prioridade(Prioridade.MEDIA)

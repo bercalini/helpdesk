@@ -11,4 +11,16 @@ public enum Status {
     private Integer codigo;
     private String descricao;
 
+    public static Status toEnum(Integer codigo) {
+        if(codigo == null) {
+            return null;
+        }
+        for(Status p: Status.values()) {
+            if(codigo.equals(p.codigo)) {
+                return p;
+            }
+        }
+        throw new IllegalArgumentException("Status invalido");
+    }
+
 }
